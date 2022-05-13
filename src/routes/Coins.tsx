@@ -13,6 +13,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 const CoinList = styled.ul`
   display: flex;
@@ -26,7 +27,7 @@ const Coin = styled.li`
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 15px;
-  width: 500px;
+  width: 400px;
 
   a {
     display: flex;

@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet } from "react-helmet";
+import { BackButton } from "../components/BackButton";
 
 interface RouteState {
   state: { name: string; id: string };
@@ -97,18 +98,18 @@ const Description = styled.p`
   margin: 20px 0px;
 `;
 
-const Tabs = styled.div`
+export const Tabs = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 25px 0px;
   gap: 10px;
 `;
 
-const Tab = styled.span<{ isActive: boolean }>`
+export const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 0px;
   border-radius: 10px;
@@ -131,7 +132,7 @@ function Coin() {
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
     () => fetchCoinTickers(coinId),
-    { refetchInterval: 3000 }
+    { refetchInterval: 1000000 }
   );
   // const [loading, setLoading] = useState(true);
   // const [info, setInfo] = useState<InfoData>();
@@ -158,6 +159,7 @@ function Coin() {
         </title>
       </Helmet>
       <Header>
+        <BackButton />
         <Title>
           {state?.name ? state.name : loading ? "Loading.." : infoData?.name}
         </Title>
@@ -200,8 +202,8 @@ function Coin() {
             </Tab>
           </Tabs>
           <Routes>
-            <Route path="price" element={<Price />}></Route>
-            <Route path="chart" element={<Chart coinId={coinId!} />}></Route>
+            <Route path="price/*" element={<Price coinId={coinId!} />}></Route>
+            <Route path="chart/*" element={<Chart coinId={coinId!} />}></Route>
           </Routes>
         </>
       )}
