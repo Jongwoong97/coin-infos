@@ -68,10 +68,9 @@ const Tab = styled.span<{ isData: boolean }>`
   font-weight: ${(props) => (props.isData ? 400 : 600)};
   padding: 10px 0px;
   border-radius: 7px;
-  color: ${(props) =>
-    props.isData ? props.theme.textColor : props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   background-color: ${(props) =>
-    props.isData ? props.theme.bgColor : props.theme.textColor};
+    props.isData ? props.theme.bgColor : props.theme.smallTileColor};
 `;
 
 interface IHistory {

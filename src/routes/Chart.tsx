@@ -20,7 +20,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.smallTileColor};
   padding: 10px 0px;
   border-radius: 10px;
   color: ${(props) =>

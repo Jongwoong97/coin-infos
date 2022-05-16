@@ -5,6 +5,8 @@ declare module "styled-components" {
   export interface DefaultTheme {
     textColor: string;
     bgColor: string;
+    tileColor: string;
     accentColor: string;
+    smallTileColor: string;
   }
 }

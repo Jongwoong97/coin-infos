@@ -3,6 +3,9 @@ import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
 import { Loader } from "./Coins";
 import styled from "styled-components";
+import { isPropertySignature } from "typescript";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 interface IChart {
   coinId: string;
@@ -19,18 +22,12 @@ interface IHistory {
   market_cap: number;
 }
 
-function histMap(props: IHistory) {
-  const time: number = new Date(props.time_close).getTime();
-  const ohlc: number[] = [time, props.open, props.high, props.low, props.close];
-
-  return ohlc;
-}
-
 function ChartCandle({ coinId }: IChart) {
   const { isLoading, data: historicalDatas } = useQuery<IHistory[]>(
     ["ohlc", coinId],
     () => fetchCoinHistory(coinId)
   );
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <div>
       {isLoading ? (
@@ -80,7 +77,7 @@ function ChartCandle({ coinId }: IChart) {
               toolbar: { show: true },
               background: "transparent",
             },
-            theme: { mode: "dark" },
+            theme: { mode: isDark ? "dark" : "light" },
             stroke: { curve: "smooth", width: 4 },
             yaxis: { show: false },
             xaxis: {

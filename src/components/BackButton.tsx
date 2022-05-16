@@ -11,8 +11,9 @@ import { useEffect } from "react";
 
 const Back = styled.div`
   position: absolute;
-  left: 5px;
+  left: 15px;
   top: 48px;
+  color: ${(props) => props.theme.tileColor};
 `;
 
 export const BackButton = () => {

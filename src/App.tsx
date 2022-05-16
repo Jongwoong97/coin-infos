@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
+import styled, {
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+} from "styled-components";
 import Router from "./routes/Router";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { darkTheme, lightTheme } from "./theme";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Open+Sans:wght@400;700&family=Poppins:wght@400;600&display=swap');
@@ -61,17 +68,22 @@ a {
   text-decoration: none;
   color:inherit;
 }
+
 * {
   box-sizing: border-box;
 }
+
 `;
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <GlobalStyle></GlobalStyle>
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle></GlobalStyle>
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
+import { ToggleButton } from "../components/ToggleButton";
 
 export const Container = styled.div`
   padding: 0px 20px;
@@ -22,7 +23,7 @@ const CoinList = styled.ul`
   flex-direction: column;
 `;
 const Coin = styled.li`
-  background-color: white;
+  background-color: ${(props) => props.theme.tileColor};
   color: ${(props) => props.theme.bgColor};
   margin-bottom: 10px;
   padding: 20px;
@@ -88,6 +89,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coins</Title>
+        <ToggleButton />
       </Header>
       {isLoading ? (
         <Loader>"Loading..."</Loader>

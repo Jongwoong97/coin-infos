@@ -3,6 +3,8 @@ import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
 import { Loader } from "./Coins";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 interface IChart {
   coinId: string;
@@ -23,6 +25,7 @@ function ChartLine({ coinId }: IChart) {
   const { isLoading, data } = useQuery<IHistory[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(coinId)
   );
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <div>
       {isLoading ? (
@@ -56,7 +59,7 @@ function ChartLine({ coinId }: IChart) {
               toolbar: { show: true },
               background: "transparent",
             },
-            theme: { mode: "dark" },
+            theme: { mode: isDark ? "dark" : "light" },
             stroke: { curve: "smooth", width: 5 },
             yaxis: { show: false },
             xaxis: {
