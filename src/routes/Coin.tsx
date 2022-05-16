@@ -163,7 +163,7 @@ function Coin() {
         <BackButton />
         <Title>
           {state?.name ? state.name : loading ? "Loading.." : infoData?.name}
-          <ToggleButton rightPosition="-130px" />
+          <ToggleButton rightPosition="-100px" />
         </Title>
       </Header>
       {loading ? (

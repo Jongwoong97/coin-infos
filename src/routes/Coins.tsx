@@ -27,7 +27,7 @@ const Coin = styled.li`
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 15px;
-  width: 375px;
+  width: 350px;
 
   a {
     display: flex;
@@ -89,7 +89,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>
-          Coins <ToggleButton rightPosition="-130px" />
+          Coins <ToggleButton rightPosition="-115px" />
         </Title>
       </Header>
       {isLoading ? (

@@ -17,7 +17,7 @@ const Button = styled.button`
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.tileColor};
   position: absolute;
-  top: 15px;
+  top: 12px;
   right: ${(props: IButtonProps) => props.rightPosition};
 `;
 
