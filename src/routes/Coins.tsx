@@ -14,7 +14,6 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 `;
 const CoinList = styled.ul`
   display: flex;
@@ -28,7 +27,7 @@ const Coin = styled.li`
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 15px;
-  width: 400px;
+  width: 375px;
 
   a {
     display: flex;
@@ -45,6 +44,7 @@ const Coin = styled.li`
 export const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
   font-size: 48px;
+  position: relative;
 `;
 
 interface CoinInterface {
@@ -88,8 +88,9 @@ function Coins() {
         <title>Coins</title>
       </Helmet>
       <Header>
-        <Title>Coins</Title>
-        <ToggleButton />
+        <Title>
+          Coins <ToggleButton rightPosition="-130px" />
+        </Title>
       </Header>
       {isLoading ? (
         <Loader>"Loading..."</Loader>
